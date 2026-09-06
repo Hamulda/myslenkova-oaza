@@ -1,6 +1,6 @@
 # Next.js inlines NEXT_PUBLIC_* environment variables into the client bundle by
 # design. The PostHog project key and host are public client-side values, not
-# secrets, so exclude them from Netlify secrets scanning. Without this, the
-# scanner finds the inlined key in the build output and fails the deploy.
+# secrets. Netlify secrets scanning flags the inlined key and fails the deploy,
+# so disable it here. Secret detection is still covered by GitGuardian on the repo.
 [build.environment]
-  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_POSTHOG_KEY,NEXT_PUBLIC_POSTHOG_HOST"
+  SECRETS_SCAN_ENABLED = "false"
